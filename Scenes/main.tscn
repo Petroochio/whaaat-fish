@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1eaiy1bun4jr"]
+
+[ext_resource type="PackedScene" uid="uid://bima73loo35hg" path="res://Scenes/Actors/player.tscn" id="1_5ytbq"]
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_shp8y"]
+[ext_resource type="PackedScene" uid="uid://bc6bdymcua3b" path="res://Scenes/Actors/sea_food.tscn" id="2_3tawv"]
+[ext_resource type="PackedScene" uid="uid://oq1a2q5peuvh" path="res://Scenes/Actors/shark.tscn" id="4_0yp4n"]
+[ext_resource type="PackedScene" uid="uid://dffg0g37s8owb" path="res://Scenes/Actors/player_score.tscn" id="4_cboal"]
+[ext_resource type="PackedScene" uid="uid://cv6gxt7injeoj" path="res://Scenes/Actors/marker_manager.tscn" id="4_mryxx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eysvc"]
+font_size = 40
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_shp8y")
+mob_scene = ExtResource("2_3tawv")
+
+[node name="Player_1" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(159, 127)
+
+[node name="PlayerScore" parent="." instance=ExtResource("4_cboal")]
+offset_left = 12.0
+offset_top = 597.0
+offset_right = 52.0
+offset_bottom = 620.0
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P1:"
+
+[node name="Player_2" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(318, 254)
+
+[node name="PlayerScore2" parent="." instance=ExtResource("4_cboal")]
+offset_left = 155.0
+offset_top = 597.0
+offset_right = 247.0
+offset_bottom = 655.0
+text = "P2: 0"
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P2:"
+
+[node name="Player_3" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(477, 381)
+
+[node name="PlayerScore3" parent="." instance=ExtResource("4_cboal")]
+offset_left = 285.0
+offset_top = 597.0
+offset_right = 377.0
+offset_bottom = 655.0
+text = "P3: 0"
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P3:"
+
+[node name="Player_4" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(159, 127)
+
+[node name="PlayerScore4" parent="." instance=ExtResource("4_cboal")]
+offset_left = 408.0
+offset_top = 597.0
+offset_right = 500.0
+offset_bottom = 655.0
+text = "P4: 0"
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P4:"
+
+[node name="Player_5" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(159, 127)
+
+[node name="PlayerScore5" parent="." instance=ExtResource("4_cboal")]
+offset_left = 532.0
+offset_top = 597.0
+offset_right = 624.0
+offset_bottom = 655.0
+text = "P5: 0"
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P5:"
+
+[node name="Player_6" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(159, 127)
+
+[node name="PlayerScore6" parent="." instance=ExtResource("4_cboal")]
+offset_left = 644.0
+offset_top = 597.0
+offset_right = 736.0
+offset_bottom = 655.0
+text = "P6: 0"
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P6:"
+
+[node name="Player_7" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(159, 127)
+
+[node name="PlayerScore7" parent="." instance=ExtResource("4_cboal")]
+offset_left = 763.0
+offset_top = 597.0
+offset_right = 855.0
+offset_bottom = 655.0
+text = "P7: 0"
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P7:"
+
+[node name="Player_8" parent="." instance=ExtResource("1_5ytbq")]
+position = Vector2(159, 127)
+
+[node name="PlayerScore8" parent="." instance=ExtResource("4_cboal")]
+offset_left = 1045.0
+offset_top = 597.0
+offset_right = 1137.0
+offset_bottom = 655.0
+text = "P8: 0"
+label_settings = SubResource("LabelSettings_eysvc")
+preface = "P8:"
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="MarkerManager" parent="." node_paths=PackedStringArray("players") instance=ExtResource("4_mryxx")]
+players = [NodePath("../Player_1"), NodePath("../Player_2"), NodePath("../Player_3"), NodePath("../Player_4"), NodePath("../Player_5"), NodePath("../Player_6"), NodePath("../Player_7"), NodePath("../Player_8")]
+
+[node name="Shark" parent="." instance=ExtResource("4_0yp4n")]
+position = Vector2(1, 201)
+SPEED = 80.0
+SEEK_SPEED = 120.0
+TURN_SPEED = 2.0
+
+[connection signal="big_move" from="Player_1" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_1" to="PlayerScore" method="add_score"]
+[connection signal="hit" from="Player_1" to="." method="game_over"]
+[connection signal="big_move" from="Player_2" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_2" to="PlayerScore2" method="add_score"]
+[connection signal="hit" from="Player_2" to="." method="game_over"]
+[connection signal="big_move" from="Player_3" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_3" to="PlayerScore3" method="add_score"]
+[connection signal="hit" from="Player_3" to="." method="game_over"]
+[connection signal="big_move" from="Player_4" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_4" to="PlayerScore4" method="add_score"]
+[connection signal="hit" from="Player_4" to="." method="game_over"]
+[connection signal="big_move" from="Player_5" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_5" to="PlayerScore5" method="add_score"]
+[connection signal="hit" from="Player_5" to="." method="game_over"]
+[connection signal="big_move" from="Player_6" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_6" to="PlayerScore6" method="add_score"]
+[connection signal="hit" from="Player_6" to="." method="game_over"]
+[connection signal="big_move" from="Player_7" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_7" to="PlayerScore7" method="add_score"]
+[connection signal="hit" from="Player_7" to="." method="game_over"]
+[connection signal="big_move" from="Player_8" to="Shark" method="set_seek"]
+[connection signal="get_score_value" from="Player_8" to="PlayerScore8" method="add_score"]
+[connection signal="hit" from="Player_8" to="." method="game_over"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

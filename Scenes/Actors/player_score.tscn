@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dffg0g37s8owb"]
+
+[ext_resource type="Script" path="res://Scenes/Actors/player_score.gd" id="1_y0vfl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pk2rf"]
+font_size = 40
+
+[node name="PlayerScore" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "P1: 0"
+label_settings = SubResource("LabelSettings_pk2rf")
+script = ExtResource("1_y0vfl")

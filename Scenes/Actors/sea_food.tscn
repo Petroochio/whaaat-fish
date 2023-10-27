@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc6bdymcua3b"]
+
+[ext_resource type="Script" path="res://Scenes/Actors/sea_food.gd" id="1_akp8e"]
+[ext_resource type="Texture2D" uid="uid://bwuwe2ia83qc0" path="res://Assets/Ellipse 40.png" id="2_cyon0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rdqm"]
+radius = 17.0
+
+[node name="SeaFood" type="CharacterBody2D" groups=["food"]]
+script = ExtResource("1_akp8e")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4rdqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cyon0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
